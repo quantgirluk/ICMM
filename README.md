@@ -1,6 +1,6 @@
-# ICMM
+# ICMM Workshop
 
-This repository contains the materials prepared for the short course/workshop "A Short Introduction to Monte Carlo Methods in Financial Mathematics", which I gave in the context of the 5th International Conference on Mathematical Modelling [5ICMM](https://www.utm.mx/cimm/).
+This repository contains the materials prepared for the short course/workshop **"A Short Introduction to Monte Carlo Methods in Financial Mathematics"**, which I gave in the context of the 5th International Conference on Mathematical Modelling [5ICMM](https://www.utm.mx/cimm/).
 
 The course was aimed to undergraduate students and general audience interested on Financial Mathematics. 
 
