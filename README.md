@@ -2,12 +2,12 @@
 
 This repository contains the materials prepared for the short course/workshop "A Short Introduction to Monte Carlo Methods in Financial Mathematics", which I gave in the context of the 5th International Conference on Mathematical Modelling (5ICMM).
 
-The course was aimed to undergraduate students and general audience. 
+The course was aimed to undergraduate students and general audience interested on Financial Mathematics. 
 
 ### General objectives
 
 - Get students interested on financial mathematics and maybe even on pursuing a career as a Quant after graduating or after finishing postgraduate education.
-- Show the type of problems that Quants encounter in their jobs as well as the kind of mathematical tools that are required to solve them. 
+- Show them the type of problems that Quants encounter in their jobs as well as the kind of mathematical tools that are required to solve them. 
 - Illustrate how mathematical concepts are translated into code in Python
 
 ### Specific objectives
@@ -43,4 +43,7 @@ The course was aimed to undergraduate students and general audience.
 - [Slides](https://github.com/quantgirluk/ICMM/blob/main/Day%202/Slides_Second_Day.pdf)
 - Notebook 1 - [Black-Scholes model](https://github.com/quantgirluk/ICMM/blob/main/Day%202/Part_2_1.ipynb)
 - Notebook 2 - [Monte Carlo to approximate integrals](https://github.com/quantgirluk/ICMM/blob/main/Day%202/Part_2_2.ipynb)
+
+
+This materials represent the views of the author alone, and not the views of BofA Securities, Inc., Citigroup,  or any of her previous employers.
 
