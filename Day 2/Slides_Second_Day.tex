@@ -1,0 +1,376 @@
+\documentclass[8pt, hyperref={pdfpagelabels=false}]{beamer}
+\usetheme{Boadilla} %{Pittsburgh}
+% For more themes: https://deic.uab.cat/~iblanes/beamer_gallery/individual/Boadilla-default-default.html
+
+
+% Packages
+\usepackage{lmodern}
+\usepackage{tikz}
+\usepackage{nicefrac}
+\usepackage{upgreek}
+\usepackage{amsmath}
+\usepackage{relsize}
+\usepackage[style=british]{csquotes}
+\usepackage[spanish, english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{smartdiagram}
+\usepackage{graphicx, epsfig}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{amssymb,amsmath}  % use mathematical symbols
+\usepackage{metalogo}
+\usepackage[export]{adjustbox}
+\usepackage{tabularx}
+\usepackage{algorithm,algorithmic}
+\usepackage{xcolor}
+%\usepackage{emoji}
+%\beamerdefaultoverlayspecification{<+->}
+
+
+
+
+\definecolor{links}{HTML}{009B55}
+\hypersetup{colorlinks,linkcolor=,urlcolor=links}
+
+
+\usefonttheme{serif}   % european characters
+\usepackage{palatino}         % use palatino as the default font
+\usepackage{fontawesome}
+\setbeamertemplate{footline}[frame number]
+%\definecolor{mycolor}{RGB}{35, 166, 164}
+
+\definecolor{mycolor}{rgb}{0.2, 0.20, 0.80}
+\usecolortheme[named=mycolor]{structure}
+
+%Beamer settings
+\setcounter{secnumdepth}{0} % sections are level 1
+\setbeamercolor{alerted text}{fg=magenta}
+%\setbeamerfont{alerted text}{series=\bfseries}
+\setbeamertemplate{frametitle}[default][left]
+\setbeamertemplate{enumerate item}[square]
+\setbeamertemplate{itemize item}[circle]
+\setbeamertemplate{sections/subsections in toc}[sections numbered]
+
+
+%\AtBeginSection[]{
+	%	\begin{frame}
+		%		\vfill
+		%		\centering
+		%		\begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{title}
+			%			\usebeamerfont{title}\insertsectionhead\par%
+			%		\end{beamercolorbox}
+		%		\vfill
+		%	\end{frame}
+	%}
+
+%\setbeamertemplate{subsection page}
+%{
+	%	\begingroup
+	%	\begin{beamercolorbox}[sep=12pt,center]{section title}
+		%		\usebeamerfont{section title}\insertsection\par
+		%	\end{beamercolorbox}
+	%	\vspace*{10pt}
+	%	\begin{beamercolorbox}[sep=8pt,center]{subsection title}
+		%		\usebeamerfont{subsection title}\insertsubsection\par
+		%	\end{beamercolorbox}
+	%	\endgroup
+	%}
+
+%\makeatletter
+\setbeamertemplate{footline}{
+	\leavevmode%
+	\hbox{%
+		\begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
+			\usebeamerfont{author in head/foot}\insertshortauthor
+		\end{beamercolorbox}%
+		\begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
+			\usebeamerfont{title in head/foot}\insertshorttitle
+		\end{beamercolorbox}%
+		\begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,right]{date in head/foot}%
+			\usebeamerfont{date in head/foot}\insertshortdate{}\hspace*{2em}
+			\insertframenumber{} / \inserttotalframenumber\hspace*{2ex}
+	\end{beamercolorbox}}%
+	\vskip0pt%
+}
+\addtobeamertemplate{footnote}{}{\vspace{2ex}}
+
+%\addtobeamertemplate{background canvas}{\transfade[duration=1]}{}
+%My newcommands
+\newcommand{\MSE}{\mathrm{MSE}}
+\newcommand{\Bias}{\mathrm{Bias}}
+\newcommand{\Tra}{\mathrm{Tr}}
+\newcommand{\PRIAL}{\mathrm{PRIAL}}
+\newcommand{\diag}{\mathrm{diag}}
+\newcommand{\ud}{\mathrm{d}}
+\newcommand{\Var}{\mathrm{Var}}
+\newcommand{\cov}{\mathrm{cov}}
+\newcommand{\defby}{\triangleq}
+\newcommand{\Yr}{\,\mathrm{Y}}
+\newcommand{\E}{\mathbb{E}}
+
+
+%% Title, author, etc.
+\title[UTM]{A Short Introduction to Monte Carlo Methods \\ in  Financial Mathematics}
+\subtitle{Workshop}
+\author[DSR]{Dialid Santiago\\
+	VP Quantitative Strategists at Bank of America\footnote{This talk represents the views of the author alone, and not the views of BofA Securities, Inc., Citigroup,  or any of her previous employers.}\\
+	\faTwitter \,\, @Quant\_Girl \\
+	\href{https://quantgirl.blog}{\color{purple}quantgirl.blog}\\
+	\href{https://github.com/quantgirluk}{https://github.com/quantgirluk}
+}
+\institute[]{}
+\date{October, 2022}
+\addtobeamertemplate{title page}{}{\begin{center}
+		5th International Conference on Mathematical Modelling\\
+		Universidad Tecnológica de la Mixteca 
+\end{center}}
+
+
+
+% Slides
+\begin{document}
+	
+	
+	\frame{\titlepage}
+	\frame{\frametitle{Contents}
+		\tableofcontents[ ] %subsectionstyle=hide]
+	}
+	
+	
+	
+	\section{Welcome}
+	\frame{
+		\frametitle{Objectives}
+		
+		
+		For the short course:
+		
+		\begin{itemize}
+			\item Get you interested on financial mathematics and maybe on pursuing a career as a Quant after graduating or after postgraduate education
+			\item Show you the type of problems we encounter so you can get a flavour of the job that quants do everyday
+			\item Show you what kind of mathematical tools are required
+		\end{itemize}
+		
+		
+		For today: 
+		
+		\begin{itemize}
+			\item Review the Black-Scholes Model for option pricing
+			\item Review the definition of Monte Carlo 
+			\item See how these concepts are translated into code in Python
+			\item Calculate the price of an Asian option using Monte Carlo
+		\end{itemize}
+	}
+
+
+\section{Black and Scholes Model}
+
+\frame{
+	\frametitle{Options}
+	\begin{block}{European Options}
+		
+		
+		
+		\begin{itemize}
+			
+			\item A \alert{European Option} is a contract which conveys to its owner the right, but not the obligation, to buy (\alert{Call}) or sell (\alert{Put}) an \alert{underlying asset or instrument}  at a specified \alert{strike} price \alert{$K$} on a  \alert{expiry} date \alert{$T$}.
+			
+			\item The \alert{payoff} is given by
+			
+			$$Call \ \ Payoff = (S_T - K)^{+}$$
+			
+			$$Put \ \  Payoff = (K - S_T)^{+},$$
+			
+			where $K$ is the strike price, and \alert{$S_T$} is the price of the underlying asset at expiry.
+			
+		\end{itemize}
+		
+	\end{block}
+	
+	Note: The key difference between American and European options relates to when the options can be exercised: An American option may be exercised either at epiry or at any time before it.
+	
+}
+
+
+\frame{
+	\frametitle{Black-Scholes Model}
+	\begin{block}{Assumptions }
+		
+		\begin{enumerate}
+			\item The \href{https://en.wikipedia.org/wiki/Risk-free_rate}{risk-free interest rate $r$} is known and constant through time
+			\item  The stock price $S$ follows a \alert{geometric Brownian motion} with constant parameters $\mu$ and $\sigma$
+			\item  Stock pays \alert{no} \href{https://en.wikipedia.org/wiki/Dividend}{dividends}
+			\item The option can only be exercised at expiration i.e. it is of \alert{European} type
+			\item There are \alert{no transaction costs}
+			\item  \alert{Fractional trading} is possible
+		\end{enumerate}		
+	\end{block}	
+}
+
+
+\frame{
+	\frametitle{Black-Scholes Equation}
+	
+	The idea is to construct a \href{https://en.wikipedia.org/wiki/Self-financing_portfolio}{self-financing portfolio} with an option and \alert{$\Delta$ units of the underlying stock}, i.e. 
+	
+	\color{blue}
+	$$\Pi_t = V_t + \Delta S_t, \qquad t\geq 0,$$
+	
+	\color{black}
+	which satisfies the following two conditions:
+	
+	\begin{itemize}
+		\item 	The portfolio is riskless
+		\item  The portfolio earns the risk free rate
+	\end{itemize}
+	Under these assumptions, we obtain a second order parabollic partial differential equation (PDE) with boundary condition
+	\color{blue}{
+	\begin{align*}
+		\frac{\partial V}{\partial t}  + r^d S_t\frac{\partial V}{\partial S} + \frac{1}{2} \sigma^2 S^2  \frac{\partial^2 V}{\partial S^2}    - r V_t  &= 0, \qquad \qquad t \in [0,T]\\
+		V_T =  (S_T - &  K)^{+} .
+	\end{align*}
+}
+\color{black}
+	We will see the full derivation inthe Jupyter Notebook.
+}
+
+
+\frame{
+\frametitle{Solution or Black-Scholes Formula}
+
+The solution, which  is known as \alert{Black and Scholes formula}, is given by
+
+\color{blue}
+\begin{align*}
+	V(S_t, t) = \Phi(d_1) S_t - \Phi(d_2)K e^{-r(T-t)},
+\end{align*}
+\color{black}
+where
+\color{blue}
+\begin{align*}
+	d_1 & = \dfrac{1}{\sigma \sqrt{T-t}} \left[ \ln \left(\frac{S_t}{K} \right) + \left( r + \dfrac{\sigma^2}{2}\right) (T-t)  \right]\\
+	d_2 & = d_1 - \sigma\sqrt{T-t},
+\end{align*}
+\color{black}
+and $\Phi$ denotes the cumulative distribution function (cdf) of a standard normal distribution.
+}
+
+\frame{
+	\begin{center}
+		\large  \href{https://github.com/quantgirluk/ICMM/blob/main/Day\%202/Part_2_1.ipynb}{Python Time}
+	\end{center}
+}
+
+
+\frame{
+	\frametitle{Monte Carlo 101}
+	\begin{block}{Monte Carlo Integration}
+		Let $X$ be either a discrete random variable taking values in a countable or finite set $\Omega$, with probability mass function (p.m.f.) $f_X$, or a continuous random variable taking values in $\Omega = \mathbb{R}^d$, with probability density function (p.d.f) $f_X$. Consider
+		
+		\begin{equation}
+			\theta = \mathbb{E}[\phi (X)] = \begin{cases}
+				\sum_{x\in\Omega} \phi(x) f_X(x) & \mbox{if X is discrete} \\
+				\int_{\mathbb{R}^d} \phi(x) f_x(x)dx & \mbox{if X is continuous},
+			\end{cases}
+		\end{equation}
+		where $\phi:\Omega\rightarrow\mathbb{R}$. Let $X_1, \cdots, X_n$ be i.i.d. random variables with p.m.f. (or p.d.f. in the continuous case) $f_X$. Then
+		\begin{equation}
+			\hat{\theta} _n= \dfrac{1}{n}\sum_{i=1}^{n} \phi(X_i),
+		\end{equation}
+		is called the \alert{Monte Carlo estimator} of the expectation $\theta$.
+	\end{block}
+	
+}
+
+
+\frame{\frametitle{Monte Carlo 101}
+	Monte Carlo methods can be thought of as a stochastic way to approximate integrals.
+	
+	\begin{algorithm}[H]
+		\begin{algorithmic}[1]
+			\STATE Simulate independent $X_1, \cdots, X_n$  from a random variable with distribution $f_X$
+			\STATE Return $	\hat{\theta} _n= \frac{1}{n}\sum_{i=1}^{n} \phi(X_i)$.
+		\end{algorithmic}
+		\caption{Monte Carlo}
+		\label{alg:seq}
+	\end{algorithm}
+}
+
+
+\frame{
+	\frametitle{Monte Carlo 101}
+	\begin{block}{Monte Carlo Estimate Properties}
+		If $\theta = \mathbb{E}[\phi (X)]$ exists, then the Monte Carlo estimator $\hat{\theta}_n$ has the following properties
+		\begin{itemize}
+			\item \alert{Unbiasedness}
+			\begin{equation*}
+				\mathbb{E}[\hat{\theta}_n] = \theta ,
+			\end{equation*}
+			\item \alert{Strong consistency}
+			\begin{equation*}
+				\hat{\theta}_n \rightarrow  \theta  \mbox{ almost surely as } n\rightarrow \infty.
+			\end{equation*}
+		\end{itemize}
+		
+		\textbf{\textit{Proof: }} Note that the linerity of ht expectation implies that
+		\begin{equation*}
+			\mathbb{E}[\hat{\theta}_n] = \mathbb{E} \left[\dfrac{1}{n}\sum_{i=1}^{n} \phi(X_i)\right] =  \dfrac{1}{n}\sum_{i=1}^{n}\mathbb{E} \left[ \phi(X_i)\right] =\theta.
+		\end{equation*}
+		Strong consistency is a consequence of the strong law of large numbers applied to $Y_i = \phi(X_i)$.
+	\end{block}
+	
+}
+
+
+\frame{
+	\frametitle{Monte Carlo 101}
+	\begin{block}{How Good is the Estimate?}
+		\begin{itemize}
+			\item Chebyshev's inequality implies
+			\begin{equation}
+				\mathbb{P}\left(|  \hat{\theta}_n -   \theta |  > c\dfrac{\sigma}{\sqrt{n}}  \right) \leq   \dfrac{n \mathbb{V} [\hat{\theta}_n] }{c^2\sigma^2} =  \dfrac{1}{c^2}
+			\end{equation}
+			\item The Central Limit Theorem implies that for large $n$
+			\begin{equation*}
+				\dfrac{\sqrt{n}}{\sigma}( \hat{\theta}_n -   \theta) \sim \mathcal{N}(0,1),
+			\end{equation*}
+			and then
+			\begin{equation*}
+				\mathbb{P}\left(|  \hat{\theta}_n -   \theta |  > c\dfrac{\sigma}{\sqrt{n}}  \right) \approx 2 (1-\Phi(c)).
+			\end{equation*}
+			Hence, by choosing $c_{\alpha}$  such that  $2 (1-\Phi(c)) = \alpha$, we obtain an approximate  $(1-\alpha) 100\%$ confidence interval for $\theta$ as follows
+			\begin{equation*}
+				\left( \hat{\theta}_n  \pm  c_{\alpha} \dfrac{\sigma}{\sqrt{n}} \right) \approx \left( \hat{\theta}_n  \pm  c_{\alpha} \dfrac{S_{\phi(X)}}{\sqrt{n}} \right)
+			\end{equation*}
+		\end{itemize}
+	\end{block}
+}
+
+
+\frame{
+	\begin{center}
+		\large  \href{https://github.com/quantgirluk/ICMM/blob/main/Day\%202/Part_2_2.ipynb}{Python time}
+	\end{center}
+}
+
+\section{Final Comments}
+
+\frame{
+\frametitle{Monte Carlo in Action }
+	Why do we need Monte Carlo if we have a closed formula in the B-S model?
+\begin{itemize}
+	\item Multi-asset instruments
+	\item More complex products such as \href{https://wayback.archive-it.org/all/20090320135332/http://people.math.jussieu.fr/~boka/enseignement/isifar/refs/Ref_Asiatiques_Rogers_Shi_95.pdf}{Asian options}
+	\item Going beyond the Black-Scholes simple model. See for example the \href{https://en.wikipedia.org/wiki/Short-rate_model}{various models} for interest rates.
+\end{itemize}
+}
+
+	
+\frame{
+	\begin{center}
+		Many thanks for your attention!
+	\end{center}
+}
+
+
+\end{document}

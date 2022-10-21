@@ -1,0 +1,314 @@
+\documentclass[8pt, hyperref={pdfpagelabels=false}]{beamer}
+\usetheme{Boadilla} %{Pittsburgh}
+% For more themes: https://deic.uab.cat/~iblanes/beamer_gallery/individual/Boadilla-default-default.html
+
+
+% Packages
+\usepackage{lmodern}
+\usepackage{tikz}
+\usepackage{nicefrac}
+\usepackage{upgreek}
+\usepackage{amsmath}
+\usepackage{relsize}
+\usepackage[style=british]{csquotes}
+\usepackage[spanish, english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{smartdiagram}
+\usepackage{graphicx, epsfig}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{amssymb,amsmath}  % use mathematical symbols
+\usepackage{metalogo}
+\usepackage[export]{adjustbox}
+\usepackage{tabularx}
+\usepackage{algorithm,algorithmic}
+\usepackage{xcolor}
+%\usepackage{emoji}
+%\beamerdefaultoverlayspecification{<+->}
+
+
+
+
+\definecolor{links}{HTML}{009B55}
+\hypersetup{colorlinks,linkcolor=,urlcolor=links}
+
+
+\usefonttheme{serif}   % european characters
+\usepackage{palatino}         % use palatino as the default font
+\usepackage{fontawesome}
+\setbeamertemplate{footline}[frame number]
+%\definecolor{mycolor}{RGB}{35, 166, 164}
+
+\definecolor{mycolor}{rgb}{0.2, 0.20, 0.80}
+\usecolortheme[named=mycolor]{structure}
+
+%Beamer settings
+\setcounter{secnumdepth}{0} % sections are level 1
+\setbeamercolor{alerted text}{fg=magenta}
+%\setbeamerfont{alerted text}{series=\bfseries}
+\setbeamertemplate{frametitle}[default][left]
+\setbeamertemplate{enumerate item}[square]
+\setbeamertemplate{itemize item}[circle]
+\setbeamertemplate{sections/subsections in toc}[sections numbered]
+
+
+%\AtBeginSection[]{
+%	\begin{frame}
+%		\vfill
+%		\centering
+%		\begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{title}
+%			\usebeamerfont{title}\insertsectionhead\par%
+%		\end{beamercolorbox}
+%		\vfill
+%	\end{frame}
+%}
+
+%\setbeamertemplate{subsection page}
+%{
+%	\begingroup
+%	\begin{beamercolorbox}[sep=12pt,center]{section title}
+%		\usebeamerfont{section title}\insertsection\par
+%	\end{beamercolorbox}
+%	\vspace*{10pt}
+%	\begin{beamercolorbox}[sep=8pt,center]{subsection title}
+%		\usebeamerfont{subsection title}\insertsubsection\par
+%	\end{beamercolorbox}
+%	\endgroup
+%}
+
+%\makeatletter
+\setbeamertemplate{footline}{
+	\leavevmode%
+	\hbox{%
+		\begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
+			\usebeamerfont{author in head/foot}\insertshortauthor
+		\end{beamercolorbox}%
+		\begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
+			\usebeamerfont{title in head/foot}\insertshorttitle
+		\end{beamercolorbox}%
+		\begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,right]{date in head/foot}%
+			\usebeamerfont{date in head/foot}\insertshortdate{}\hspace*{2em}
+			\insertframenumber{} / \inserttotalframenumber\hspace*{2ex}
+	\end{beamercolorbox}}%
+	\vskip0pt%
+}
+\addtobeamertemplate{footnote}{}{\vspace{2ex}}
+
+%\addtobeamertemplate{background canvas}{\transfade[duration=1]}{}
+%My newcommands
+\newcommand{\MSE}{\mathrm{MSE}}
+\newcommand{\Bias}{\mathrm{Bias}}
+\newcommand{\Tra}{\mathrm{Tr}}
+\newcommand{\PRIAL}{\mathrm{PRIAL}}
+\newcommand{\diag}{\mathrm{diag}}
+\newcommand{\ud}{\mathrm{d}}
+\newcommand{\Var}{\mathrm{Var}}
+\newcommand{\cov}{\mathrm{cov}}
+\newcommand{\defby}{\triangleq}
+\newcommand{\Yr}{\,\mathrm{Y}}
+\newcommand{\E}{\mathbb{E}}
+
+
+%% Title, author, etc.
+\title[UTM]{A Short Introduction to Monte Carlo Methods \\ in  Financial Mathematics}
+\subtitle{Workshop}
+\author[DSR]{Dialid Santiago\\
+	VP Quantitative Strategists at Bank of America\footnote{This talk represents the views of the author alone, and not the views of BofA Securities, Inc., Citigroup,  or any of her previous employers.}\\
+	\faTwitter \,\, @Quant\_Girl \\
+	\href{https://quantgirl.blog}{\color{purple}quantgirl.blog}\\
+	\href{https://github.com/quantgirluk}{https://github.com/quantgirluk}
+}
+\institute[]{}
+\date{October, 2022}
+\addtobeamertemplate{title page}{}{\begin{center}
+		5th International Conference on Mathematical Modelling\\
+		Universidad Tecnológica de la Mixteca 
+\end{center}}
+
+
+
+% Slides
+\begin{document}
+	
+	
+\frame{\titlepage}
+\frame{\frametitle{Contents}
+	\tableofcontents[ ] %subsectionstyle=hide]
+}
+
+
+
+\section{Welcome}
+\frame{
+	\frametitle{Objectives}
+	
+	
+For the short course:
+
+\begin{itemize}
+	\item Get you interested on financial mathematics and maybe on pursuing a career as a Quant after graduating or after postgraduate education
+	\item Show you the type of problems we encounter so you can get a flavour of the job that quants do everyday
+	\item Show you what kind of mathematical tools are required
+\end{itemize}
+	
+
+For today: 
+	
+\begin{itemize}
+	\item Recall  concepts on Probaility and Stochastic Processes Theory
+	\begin{itemize}
+		\item  Random Variables, Stochastic Processes 
+		\item  Brownian Motion
+		\item Ito's formula 
+		\item Geometric Brownian Motion
+	\end{itemize}
+  \item See how these concepts are translated into code in Python
+  \item Take a first look at financial time series in Python
+\end{itemize}
+}
+
+
+
+\section{Basic Conceps}
+
+\frame{
+	\frametitle{Basic Concepts}
+	\begin{block}{Random Variables}
+	Let $(\Omega, \mathcal{F}, \mathbb{P})$ be a \href{https://en.wikipedia.org/wiki/Probability_space}{probability space} and $(S,\Sigma) $ a \href{https://en.wikipedia.org/wiki/Measurable_space}{measurable space}. Then, an $(S, \Sigma)$ \alert{random variable} is a \href{https://en.wikipedia.org/wiki/Measurable_function}{measurable function}
+	$$X: \Omega \rightarrow S,$$
+	which means that, for every subset $B\in\Sigma $, its pre-image is $\mathcal{F}-$measurable, i.e.;
+	$$X^{-1}(B) \in \mathcal{F},$$
+	where 
+	$$X^{-1}(B) = \{   \omega : X(\omega )\in B \}.$$ 
+	\end{block}
+
+\begin{itemize}
+	\item  Tipically, $S = \mathbb{R}^d$ for some $d\geq 1$,  and $\Sigma = \mathcal{B}(\mathbb{R}^d)$ is the  corresponding Borel sigma-algebra. 
+	\item Examples
+		\begin{itemize}
+		\item  Discrete random variables: \alert{Bernoulli, Binomial, Poisson}
+		\item Continuous random variables: \alert{Uniform, Gaussian, Log-normal, t-Student} 
+	\end{itemize}
+\end{itemize}
+}
+
+\frame{
+\begin{center}
+\large	\href{https://github.com/quantgirluk/ICMM/blob/bf94e8aa6770c2909ab715dc4ef4b4d3db1e554c/Day\%201/Part\_1\_1.ipynb}{Python Time}
+\end{center}
+}
+
+
+
+\frame{
+	\frametitle{Basic Concepts}
+	\begin{block}{Stochastic Process}
+For  given \href{https://en.wikipedia.org/wiki/Probability_space}{probability space}   $(\Omega ,{\mathcal {F}},P)$ and \href{https://en.wikipedia.org/wiki/Measurable_space}{measurable space} $(S, \Sigma)$, a \alert{stochastic process} is a collection of $S$-valued random variables 
+$$\{ X_t : t \in I\},$$
+where the set $I$ is called index set.
+	\end{block}
+	
+	\begin{itemize}
+		\item  Tipically, $S = \mathbb{R}^d$ for some $d\geq 1$ and  $\Sigma = \mathcal{B}(\mathbb{R}^d)$ is the  corresponding Borel sigma-algebra
+	    \item The index set can be discrete, e.g.  $I=\mathbb{N}$, or continuous e.g. $I=[0,T]$ for some $T\geq 0$.
+	\end{itemize}
+}
+
+\section{Stochastic Processes}
+
+\frame{
+	\frametitle{Stochastic Processes}
+	\begin{block}{Brownian Motion or Wiener process}
+	A \alert{standard Brownian motion}, or \href{https://en.wikipedia.org/wiki/Wiener_process}{Wiener process},  is a stochastic process $\{ W_t : t \geq 0 \}$ charaterised by the following four properties:
+	\begin{enumerate}
+		\item $W_0 = 0$
+		\item $W_t$ has independent increments
+		\item $W_t-W_s\sim \mathcal{N}(0, t-s)$ for any $0\leq s\leq t$ 
+		\item $W_t$ is almost surely continuous
+	\end{enumerate}
+	\end{block}
+
+Here $\mathcal{N}(\mu, \sigma^2)$ denotes the normal or Gaussian distribution with  given mean $\mu$ and variance $\sigma$.
+}
+
+
+\frame{
+	\begin{center}
+		\large \href{https://github.com/quantgirluk/ICMM/blob/bf94e8aa6770c2909ab715dc4ef4b4d3db1e554c/Day\%201/Part_1_2.ipynb}{Python Time}
+	\end{center}
+}
+
+
+\frame{
+	\frametitle{Stochastic Processes}
+	\begin{block}{Ito's Lemma}
+	Suppose that $X =\{X_t : t\geq 0 \}$ is a stochastic \alert{process} which satisfies the following \alert{stochastic differential equation (SDE)}
+	\begin{equation*}
+		dX_t = \mu(t, X_t )dt + \sigma(t, X_t)dW_t, \qquad t\geq 0,
+	\end{equation*}
+i.e. 
+	\begin{equation*}
+	X_t = X_0 +  \int_0^t\mu(s, X_s )ds + \int_0^t \sigma(s, X_s)dW_s, \qquad t\geq 0,
+\end{equation*}
+where $W$ denotes a standard Brownian motion. Let \alert{$f(t,X)$ be a twice differentiable function}. Then the process  $Y = \{Y_t = f(t, X_t), t\geq 0\}$ satisfies the following SDE
+\begin{eqnarray*}
+ df(t, X_t) = \left(  \dfrac{\partial f}{\partial t} +  \mu_t \dfrac{\partial f }{\partial x } + \dfrac{1}{2} \sigma_t^2  \dfrac{\partial^2 f}{\partial x^2} \right) dt + \sigma_t \dfrac{\partial f}{\partial x} dW_t,
+\end{eqnarray*}
+i.e. 
+\begin{eqnarray*}
+	f(t, X_t) =  f(0, X_0) +  \int_0^t \left(  \dfrac{\partial f}{\partial s} +  \mu_s \dfrac{\partial f }{\partial x } + \dfrac{1}{2} \sigma_s^2  \dfrac{\partial^2 f}{\partial x^2} \right) ds + \int_0^t \sigma_s \dfrac{\partial f}{\partial x} dW_s, \qquad t\geq 0.
+\end{eqnarray*}
+	\end{block}
+	
+}
+
+
+\frame{
+	\frametitle{Stochastic Processes}
+	\begin{block}{Geometric Brownian Motion}
+A \alert{geometric Brownian motion} is a stochastic process defined by the following SDE
+\begin{align}
+	dS_t &= \mu S_t dt + \sigma S_t W_t, \quad t >0, 
+\end{align}
+where $S_0 =s_0>0$, $\mu\in\mathbb{R}$, $\sigma>0$, are constants;  and $W$ is a standard Brownian motion. 
+	\end{block}
+
+\textbf{\textit{Solution:}}
+Let us set a new process as  $X_t = log(S_t)$. Using Ito's formula, we obtain
+
+$$X_t = X_0 +  \left( \mu-\frac{1}{2}\sigma^2 \right)t  + \sigma W_t,$$
+
+or equivalently 
+
+$$log(S_t) = log(s_0) +  \left( \mu-\frac{1}{2}\sigma^2 \right)t  + \sigma W_t.$$
+
+
+Note that the last expression implies that $\log(S_t)$ follows a \alert{normal distribution} $\mathcal{N}\left(\log(s_0) +  \left( \mu-\frac{1}{2}\sigma^2 \right)t, \sigma^2 t\right )$. This, in turn  implies that 
+
+$$S_t = s_0 \exp\left\{ \left( \mu-\frac{1}{2}\sigma^2 \right)t  + \sigma W_t   \right\}, \quad \forall t>0,$$
+
+follows a \alert{log-normal distribution}. 
+}
+
+\frame{
+	\begin{center}
+		\large\href{https://github.com/quantgirluk/ICMM/blob/bf94e8aa6770c2909ab715dc4ef4b4d3db1e554c/Day\%201/Part_1_3.ipynb}{Python Time } 
+	\end{center}
+}
+
+
+\frame{
+		\begin{center}
+	To finish this session let's take a look at financial time series in \href{https://github.com/quantgirluk/ICMM/blob/bf94e8aa6770c2909ab715dc4ef4b4d3db1e554c/Day\%201/Part_1_4.ipynb}{Python}
+	\end{center}
+}
+
+\frame{
+	\begin{center}
+		Many thanks for your attention\\
+		See you tomorrow!
+	\end{center}
+}
+
+
+\end{document}
