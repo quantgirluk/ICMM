@@ -45,5 +45,5 @@ The course was aimed to undergraduate students and general audience interested o
 - Notebook 2 - [Monte Carlo to approximate integrals](https://github.com/quantgirluk/ICMM/blob/main/Day%202/Part_2_2.ipynb)
 
 
-This materials represent the views of the author alone, and not the views of BofA Securities, Inc., Citigroup,  or any of her previous employers.
+**Disclaimer:** This materials represent the views of the author alone, and not the views of BofA Securities, Inc., Citigroup,  or any of her previous employers.
 
